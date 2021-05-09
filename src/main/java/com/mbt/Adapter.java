@@ -9,7 +9,9 @@ public class Adapter {
     private com.luugiathuy.games.reversi.Reversi reversiGame = com.luugiathuy.games.reversi.Reversi.getInstance();
     private char playerPiece;
     private char AIPiece;
+
     public final Agent.MoveCoord invalidCoord = new Agent.MoveCoord(reversiGame.sBOARD_SIZE, reversiGame.sBOARD_SIZE);
+    public int piecesCountBeforePlay;
 
     public void init() {
         System.out.println("Adapter: init SUT");
@@ -22,8 +24,8 @@ public class Adapter {
     public void newGame() {
         System.out.println("Adapter: new game");
         reversiGame.newGame();
+        piecesCountBeforePlay = 4; // game start with 4 pieces on board
     }
-
 
     public void letPlayerStartFirst(boolean isPlayerStart) {
         System.out.println("Adapter: player start first: " + (isPlayerStart ? "yes":"no"));
@@ -52,9 +54,8 @@ public class Adapter {
     }
 
     public boolean isMoveValid(Agent.MoveCoord coord) {
-        for (int i = 0; i < reversiGame.sBOARD_SIZE; ++i) {
-            System.out.println(reversiGame.getBoard()[i]);
-        }
+        // populate the suggested moves
+        reversiGame.findValidMove(reversiGame.getBoard(), playerPiece, true);
         return reversiGame.getBoard()[coord.getRow()][coord.getCol()] ==
                 (playerPiece == reversiGame.sWHITE_PIECE ? reversiGame.sSUGGEST_WHITE_PIECE : reversiGame.sSUGGEST_BLACK_PIECE);
     }
@@ -66,7 +67,10 @@ public class Adapter {
         ArrayList<Agent.MoveCoord> suggestedMoves = reversiGame.findValidMove(reversiGame.getBoard(), playerPiece, false);
 
         if (!suggestedMoves.isEmpty()) {
-            return suggestedMoves.get(new Random().nextInt(suggestedMoves.size()));
+            Agent.MoveCoord suggestedMove = suggestedMoves.get(new Random().nextInt(suggestedMoves.size()));
+            System.out.println("Adapter: valid Move: " + suggestedMove.getRow() + " " + suggestedMove.getCol());
+
+            return suggestedMove;
         }
         else {
             return invalidCoord;
@@ -99,13 +103,12 @@ public class Adapter {
 
     public int getTotalPieceCount() {
         // remove the suggested moves on the board
-        int totalPieces = reversiGame.sBOARD_SIZE * reversiGame.sBOARD_SIZE;
+        int totalPieces = 0;
         char[][] board = reversiGame.getBoard();
-        reversiGame.findValidMove(board, playerPiece, false);
         for (int i = 0; i < reversiGame.sBOARD_SIZE; ++i) {
             for (int j = 0; j < reversiGame.sBOARD_SIZE; ++j) {
-                if(board[i][j] == reversiGame.sEMPTY_PIECE) {
-                    --totalPieces;
+                if(board[i][j] == reversiGame.sBLACK_PIECE || board[i][j] == reversiGame.sWHITE_PIECE) {
+                    ++totalPieces;
                 }
             }
         }
@@ -113,10 +116,20 @@ public class Adapter {
     }
 
     public void effectMove(Agent.MoveCoord coord) {
+        updatePiecesCounter();
         reversiGame.movePiece(coord.getRow(), coord.getCol());
     }
 
+    public void updatePiecesCounter() {
+        piecesCountBeforePlay = getTotalPieceCount();
+    }
     public boolean isGameEnded() {
         return reversiGame.getGameState() == reversiGame.ENDED;
+    }
+
+    public void printBoard() {
+        for (int i = 0; i < reversiGame.sBOARD_SIZE; ++i) {
+            System.out.println(reversiGame.getBoard()[i]);
+        }
     }
 }
