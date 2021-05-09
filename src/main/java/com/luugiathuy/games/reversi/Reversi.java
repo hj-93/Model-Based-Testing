@@ -344,7 +344,7 @@ public class Reversi extends Observable{
 		// check whether this square is empty
 		if (board[row][col] != sEMPTY_PIECE)
 			return false;
-		
+
 		char oppPiece = (piece == sBLACK_PIECE) ? sWHITE_PIECE : sBLACK_PIECE;
 		
 		boolean isValid = false;

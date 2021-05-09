@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<testsuites time="0.068" tests="1" failures="0" errors="1">
+    <testsuite tests="1" failures="0" errors="1" time="0.068" timestamp="2021-05-09T14:18:19">
+        <properties>
+            <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+            <property name="classworlds.conf" value="/Users/huijing/Downloads/apache-maven-3.8.1/bin/m2.conf"/>
+            <property name="env.HOME" value="/Users/huijing"/>
+            <property name="env.JAVA_HOME" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home"/>
+            <property name="env.JAVA_MAIN_CLASS_31324" value="org.codehaus.plexus.classworlds.launcher.Launcher"/>
+            <property name="env.LC_CTYPE" value="UTF-8"/>
+            <property name="env.LOGNAME" value="huijing"/>
+            <property name="env.MAVEN_CMD_LINE_ARGS" value=" graphwalker:test"/>
+            <property name="env.MAVEN_PROJECTBASEDIR" value="/Users/huijing/Downloads/Reversi"/>
+            <property name="env.OLDPWD" value="/Users/huijing/Downloads/Reversi"/>
+            <property name="env.PATH" value="/Users/huijing/Downloads/apache-maven-3.8.1/bin:/Users/huijing/.cabal/bin:/Users/huijing/.ghcup/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin"/>
+            <property name="env.PWD" value="/Users/huijing/Downloads/Reversi"/>
+            <property name="env.SHELL" value="/bin/bash"/>
+            <property name="env.SHLVL" value="1"/>
+            <property name="env.SSH_AUTH_SOCK" value="/private/tmp/com.apple.launchd.Iw2ROQFEnm/Listeners"/>
+            <property name="env.TERM" value="xterm-256color"/>
+            <property name="env.TERM_PROGRAM" value="Apple_Terminal"/>
+            <property name="env.TERM_PROGRAM_VERSION" value="433"/>
+            <property name="env.TERM_SESSION_ID" value="7B9E0DED-89A4-4547-981C-6A44E36DCE22"/>
+            <property name="env.TMPDIR" value="/var/folders/b9/f8cc066x0b31qxbqdrzv_d200000gn/T/"/>
+            <property name="env.USER" value="huijing"/>
+            <property name="env.XPC_FLAGS" value="0x0"/>
+            <property name="env.XPC_SERVICE_NAME" value="0"/>
+            <property name="env.__CF_USER_TEXT_ENCODING" value="0x1F5:0x0:0x0"/>
+            <property name="file.encoding" value="UTF-8"/>
+            <property name="file.encoding.pkg" value="sun.io"/>
+            <property name="file.separator" value="/"/>
+            <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+            <property name="gopherProxySet" value="false"/>
+            <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+            <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+            <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+            <property name="java.class.path" value="/Users/huijing/Downloads/apache-maven-3.8.1/boot/plexus-classworlds-2.6.0.jar"/>
+            <property name="java.class.version" value="52.0"/>
+            <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/endorsed"/>
+            <property name="java.ext.dirs" value="/Users/huijing/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+            <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre"/>
+            <property name="java.io.tmpdir" value="/var/folders/b9/f8cc066x0b31qxbqdrzv_d200000gn/T/"/>
+            <property name="java.library.path" value="/Users/huijing/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+            <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+            <property name="java.runtime.version" value="1.8.0_291-b10"/>
+            <property name="java.specification.name" value="Java Platform API Specification"/>
+            <property name="java.specification.vendor" value="Oracle Corporation"/>
+            <property name="java.specification.version" value="1.8"/>
+            <property name="java.vendor" value="Oracle Corporation"/>
+            <property name="java.vendor.url" value="http://java.oracle.com/"/>
+            <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+            <property name="java.version" value="1.8.0_291"/>
+            <property name="java.vm.info" value="mixed mode"/>
+            <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+            <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+            <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+            <property name="java.vm.specification.version" value="1.8"/>
+            <property name="java.vm.vendor" value="Oracle Corporation"/>
+            <property name="java.vm.version" value="25.291-b10"/>
+            <property name="library.jansi.path" value="/Users/huijing/Downloads/apache-maven-3.8.1/lib/jansi-native"/>
+            <property name="line.separator" value="&#xA;"/>
+            <property name="maven.build.version" value="Apache Maven 3.8.1 (05c21c65bdfed0f71a2f2ada8b84da59348c4c5d)"/>
+            <property name="maven.conf" value="/Users/huijing/Downloads/apache-maven-3.8.1/conf"/>
+            <property name="maven.home" value="/Users/huijing/Downloads/apache-maven-3.8.1"/>
+            <property name="maven.multiModuleProjectDirectory" value="/Users/huijing/Downloads/Reversi"/>
+            <property name="maven.version" value="3.8.1"/>
+            <property name="os.arch" value="x86_64"/>
+            <property name="os.name" value="Mac OS X"/>
+            <property name="os.version" value="10.15.6"/>
+            <property name="path.separator" value=":"/>
+            <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+            <property name="sun.arch.data.model" value="64"/>
+            <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/classes"/>
+            <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib"/>
+            <property name="sun.cpu.endian" value="little"/>
+            <property name="sun.cpu.isalist" value=""/>
+            <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+            <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher graphwalker:test"/>
+            <property name="sun.java.launcher" value="SUN_STANDARD"/>
+            <property name="sun.jnu.encoding" value="UTF-8"/>
+            <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+            <property name="sun.os.patch.level" value="unknown"/>
+            <property name="user.country" value="SE"/>
+            <property name="user.dir" value="/Users/huijing/Downloads/Reversi"/>
+            <property name="user.home" value="/Users/huijing"/>
+            <property name="user.language" value="en"/>
+            <property name="user.name" value="huijing"/>
+            <property name="user.timezone" value=""/>
+        </properties>
+        <testcase name="ReversiModel" time="0.068" classname="com.mbt.ReversiModel">
+            <error type="java.lang.AssertionError" message="expected:&lt;false&gt; but was:&lt;true&gt;">
+                java.lang.AssertionError: expected:&lt;false&gt; but was:&lt;true&gt;
+                	at org.junit.Assert.fail(Assert.java:88)
+                	at org.junit.Assert.failNotEquals(Assert.java:834)
+                	at org.junit.Assert.assertEquals(Assert.java:118)
+                	at org.junit.Assert.assertEquals(Assert.java:144)
+                	at com.mbt.ReversiModel.v_AITurn(ReversiModel.java:120)
+                	at jdk.nashorn.internal.scripts.Script$Recompilation$11$929$\^eval\_.v_AITurn(&lt;eval&gt;:1)
+                	at jdk.nashorn.internal.scripts.Script$10$\^eval\_.:program(&lt;eval&gt;:1)
+                	at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:637)
+                	at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+                	at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+                	at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:449)
+                	at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:406)
+                	at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:402)
+                	at jdk.nashorn.api.scripting.NashornScriptEngine.eval(NashornScriptEngine.java:155)
+                	at javax.script.AbstractScriptEngine.eval(AbstractScriptEngine.java:264)
+                	at org.graphwalker.core.machine.ExecutionContext.execute(ExecutionContext.java:300)
+                	at org.graphwalker.core.machine.SimpleMachine.execute(SimpleMachine.java:290)
+                	at org.graphwalker.core.machine.SimpleMachine.execute(SimpleMachine.java:265)
+                	at org.graphwalker.core.machine.SimpleMachine.getNextStep(SimpleMachine.java:105)
+                	at org.graphwalker.java.test.TestExecutor.execute(TestExecutor.java:199)
+                	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                	at java.lang.reflect.Method.invoke(Method.java:498)
+                	at org.graphwalker.java.test.Reflections.invoke(Reflections.java:74)
+                	at org.graphwalker.java.test.Reflector.execute(Reflector.java:125)
+                	at org.graphwalker.maven.plugin.TestMojo.execute(TestMojo.java:153)
+                	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:137)
+                	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:210)
+                	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:156)
+                	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:148)
+                	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:117)
+                	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:81)
+                	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:56)
+                	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+                	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:305)
+                	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:192)
+                	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:105)
+                	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:957)
+                	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:289)
+                	at org.apache.maven.cli.MavenCli.main(MavenCli.java:193)
+                	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                	at java.lang.reflect.Method.invoke(Method.java:498)
+                	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:282)
+                	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:225)
+                	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:406)
+                	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:347)
+</error>
+        </testcase>
+    </testsuite>
+</testsuites>
