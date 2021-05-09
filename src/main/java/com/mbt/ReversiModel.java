@@ -1,14 +1,17 @@
 package com.mbt;
 
 import com.luugiathuy.games.reversi.Agent;
+
+import org.graphwalker.core.condition.TimeDuration;
 import org.graphwalker.core.condition.EdgeCoverage;
-//import org.graphwalker.core.condition.TimeDuration;
 import org.graphwalker.core.condition.VertexCoverage;
 import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.*;
 import org.graphwalker.java.test.TestBuilder;
 import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -164,12 +167,12 @@ public class ReversiModel extends ExecutionContext implements Reversi {
                 .execute();
     }
 
-    /*
+
     @Test
     public void stabilityTest() {
         new TestBuilder()
-                .addModel(MODEL_PATH, new RandomPath(new TimeDuration(30, TimeUnit.SECONDS)), "e_Start")
+                .addModel(MODEL_PATH, new RandomPath(new TimeDuration(300, TimeUnit.SECONDS)), "e_Start")
                 .execute();
     }
-    */
+
 }
