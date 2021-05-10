@@ -70,6 +70,7 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         assertEquals(true, reversiAdapter.isCurrentTurnPlayer());
         assertEquals(reversiAdapter.getTotalScores(), reversiAdapter.getTotalPieceCount());
 
+        // order matters below, due to SUT method "findValidMove" will affect the "board" regarding suggested moves
         setAttribute("isAIMovePossible", reversiAdapter.isAIMovePossible());
         setAttribute("isPlayerMovePossible", reversiAdapter.isPlayerMovePossible());
     }
