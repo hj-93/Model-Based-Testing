@@ -4,7 +4,6 @@ import com.luugiathuy.games.reversi.Agent;
 
 import org.graphwalker.core.condition.TimeDuration;
 import org.graphwalker.core.condition.EdgeCoverage;
-import org.graphwalker.core.condition.VertexCoverage;
 import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.java.annotation.*;
@@ -71,8 +70,8 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         assertEquals(true, reversiAdapter.isCurrentTurnPlayer());
         assertEquals(reversiAdapter.getTotalScores(), reversiAdapter.getTotalPieceCount());
 
-        setAttribute("isPlayerMovePossible", reversiAdapter.isPlayerMovePossible());
         setAttribute("isAIMovePossible", reversiAdapter.isAIMovePossible());
+        setAttribute("isPlayerMovePossible", reversiAdapter.isPlayerMovePossible());
     }
 
     @Override
@@ -82,30 +81,32 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         // assert game not end
         assertEquals(false, reversiAdapter.isGameEnded());
 
+        Agent.MoveCoord invalidMove = reversiAdapter.proposeInvalidPlayerMove();
         Agent.MoveCoord validMove = reversiAdapter.proposeValidPlayerMove();
 
         // assert that at least one valid move is available when it reaches current edge
         assert ((reversiAdapter.invalidCoord.getRow() != validMove.getRow()) &&
                 (reversiAdapter.invalidCoord.getCol() != validMove.getCol()));
 
+        reversiAdapter.updatePiecesCounter();
+
         // 20% chance player goes for an invalid move
         if (Math.random() * 100 < 20) {
             System.out.println("Model: e_PlayerMove make an invalid move");
-            Agent.MoveCoord invalidMove = reversiAdapter.proposeInvalidPlayerMove();
-            setAttribute("playerMoveTrial", invalidMove);
+            reversiAdapter.tryEffectMove(invalidMove);
+            setAttribute("isMoveValid", false);
         }
         // 80% chance player goes for a valid move
         else {
             System.out.println("Model: e_PlayerMove make a valid move");
-            setAttribute("playerMoveTrial", validMove);
+            reversiAdapter.tryEffectMove(validMove);
+            setAttribute("isMoveValid", true);
         }
     }
 
     @Override
     public void v_JudgePlayerMove() {
         System.out.println("Model: v_JudgePlayerMove");
-        Agent.MoveCoord moveCoord = (Agent.MoveCoord)getAttribute("playerMoveTrial");
-        setAttribute("isMoveValid", reversiAdapter.isMoveValid(moveCoord));
     }
 
     @Override
@@ -116,7 +117,6 @@ public class ReversiModel extends ExecutionContext implements Reversi {
     @Override
     public void e_MoveAccepted() {
         System.out.println("Model: e_MoveAccepted");
-        reversiAdapter.effectMove((Agent.MoveCoord)getAttribute("playerMoveTrial"));
     }
 
     @Override
@@ -134,16 +134,16 @@ public class ReversiModel extends ExecutionContext implements Reversi {
 
     @Override
     public void e_AIMove() {
-        System.out.println("Model: e_AIMove: " + reversiAdapter.getTotalPieceCount() + " " + reversiAdapter.piecesCountBeforePlay);
-
+        System.out.println("Model: e_AIMove");
+        System.out.println("Model: e_AIMove old pieceCount: " + reversiAdapter.getTotalPieceCount() + ", new pieceCount: " + reversiAdapter.piecesCountBeforePlay);
         System.out.println("Model: e_AIMove Board layout after AI move");
         reversiAdapter.printBoard();
 
         // bug found:
         // assert that after one round of plays (both player and AI finished),
         // the number of pieces on board increased by 1 (only one player can play) or 2(both player can play).
-//        assertEquals(true, (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 1) ||
-//                                           (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 2));
+        // assertEquals(true, (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 1) ||
+        //                                   (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 2));
    }
 
     @Override
