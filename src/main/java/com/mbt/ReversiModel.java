@@ -113,6 +113,8 @@ public class ReversiModel extends ExecutionContext implements Reversi {
     @Override
     public void e_MoveRejected() {
         System.out.println("Model: e_MoveRejected");
+        // assert that no pieces played on the board after a invalid move
+        assertEquals(reversiAdapter.getTotalPieceCount(), reversiAdapter.piecesCountBeforePlay);
     }
 
     @Override
@@ -140,11 +142,14 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         System.out.println("Model: e_AIMove Board layout after AI move");
         reversiAdapter.printBoard();
 
-        // bug found:
+        // SUT bug found (this assertion failed):
         // assert that after one round of plays (both player and AI finished),
         // the number of pieces on board increased by 1 (only one player can play) or 2(both player can play).
         // assertEquals(true, (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 1) ||
         //                                   (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 2));
+
+        // Considering the assertion above fails due to SUT bug, lets at least assert that the PieceCount shall increase
+        assertEquals(true, reversiAdapter.getTotalPieceCount() > reversiAdapter.piecesCountBeforePlay);
    }
 
     @Override
