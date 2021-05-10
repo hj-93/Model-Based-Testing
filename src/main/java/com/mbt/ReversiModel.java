@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-@GraphWalker(value = "random(time_duration(1))", start = "e_Start")
+@GraphWalker(value = "random(edge_coverage(90))", start = "e_Start")
 public class ReversiModel extends ExecutionContext implements Reversi {
     public final static Path MODEL_PATH = Paths.get("com/mbt/Reversi.graphml");
     private Adapter reversiAdapter = new Adapter();
@@ -69,7 +69,7 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         System.out.println("Model: v_PlayerTurn");
 
         assertEquals(true, reversiAdapter.isCurrentTurnPlayer());
-        assertEquals(reversiAdapter.getTotalPieceCount() , reversiAdapter.getTotalPieceCount());
+        assertEquals(reversiAdapter.getTotalScores(), reversiAdapter.getTotalPieceCount());
 
         setAttribute("isPlayerMovePossible", reversiAdapter.isPlayerMovePossible());
         setAttribute("isAIMovePossible", reversiAdapter.isAIMovePossible());
@@ -142,9 +142,9 @@ public class ReversiModel extends ExecutionContext implements Reversi {
         // bug found:
         // assert that after one round of plays (both player and AI finished),
         // the number of pieces on board increased by 1 (only one player can play) or 2(both player can play).
-/*        assertEquals(true, (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 1) ||
-                                           (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 2));*/
-    }
+//        assertEquals(true, (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 1) ||
+//                                           (reversiAdapter.getTotalPieceCount()  == reversiAdapter.piecesCountBeforePlay + 2));
+   }
 
     @Override
     public void e_EndGame() {
@@ -157,7 +157,7 @@ public class ReversiModel extends ExecutionContext implements Reversi {
 
         // assert that game end
         assertEquals(true, reversiAdapter.isGameEnded());
-        assertEquals(reversiAdapter.getTotalPieceCount() , reversiAdapter.getTotalPieceCount());
+        assertEquals(reversiAdapter.getTotalScores() , reversiAdapter.getTotalPieceCount());
     }
 
     @Test
@@ -168,11 +168,11 @@ public class ReversiModel extends ExecutionContext implements Reversi {
     }
 
 
-    @Test
-    public void stabilityTest() {
-        new TestBuilder()
-                .addModel(MODEL_PATH, new RandomPath(new TimeDuration(300, TimeUnit.SECONDS)), "e_Start")
-                .execute();
-    }
+//    @Test
+//    public void stabilityTest() {
+//        new TestBuilder()
+//                .addModel(MODEL_PATH, new RandomPath(new TimeDuration(300, TimeUnit.SECONDS)), "e_Start")
+//                .execute();
+//    }
 
 }
