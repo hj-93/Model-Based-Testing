@@ -39,7 +39,7 @@ import com.luugiathuy.games.reversi.Agent.MoveCoord;
 public class Reversi extends Observable{
 	
 	/** The unique instance of this class */
-	private static Reversi sInstance;
+	public static Reversi sInstance;
 	
 	/** Game State */
 	public static final int PLAYING = 0;
@@ -64,13 +64,13 @@ public class Reversi extends Observable{
 	public static final char sEMPTY_PIECE = '-';
 	
 	/** move offset for row */
-	private static final int[] sOFFSET_MOVE_ROW = {-1, -1, -1,  0,  0,  1,  1,  1};
+	public static final int[] sOFFSET_MOVE_ROW = {-1, -1, -1,  0,  0,  1,  1,  1};
 	
 	/** move offset for column */
-	private static final int[] sOFFSET_MOVE_COL = {-1,  0,  1, -1,  1, -1,  0,  1};
+	public static final int[] sOFFSET_MOVE_COL = {-1,  0,  1, -1,  1, -1,  0,  1};
 	
 	/** board init */
-	private static final char[][] sINIT_BOARD = {	{ sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE },	// 1
+	public static final char[][] sINIT_BOARD = {	{ sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE },	// 1
 													{ sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE },	// 2
 													{ sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE }, // 3
 													{ sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sBLACK_PIECE, sWHITE_PIECE, sEMPTY_PIECE, sEMPTY_PIECE, sEMPTY_PIECE },	// 4
@@ -81,37 +81,37 @@ public class Reversi extends Observable{
 													// 		a    		  b    			c    	      d    		 	e    	  	  f    			g    		  h
 	
 	/** whether it is black's turn to move */
-	private boolean mIsBlackTurn = false;
+	public boolean mIsBlackTurn = false;
 	
 	/** whether it is computer's turn to move */
-	private boolean mIsCompTurn = true;
+	public boolean mIsCompTurn = true;
 	
 	/** the board */
-	private char[][] mBoard;
+	public char[][] mBoard;
 	
 	/** score of black piece */
-	private int mBlackScore;
+	public int mBlackScore;
 	
 	/** score of white piece */
-	private int mWhiteScore;
+	public int mWhiteScore;
 	
 	/** state of the game */
-	private int mState;
+	public int mState;
 	
 	/** AI agent */
-	private Agent mAIAgent;
+	public Agent mAIAgent;
 	
 	/** new piece position */
-	private int mNewPieceRow;
-	private int mNewPieceCol;
+	public int mNewPieceRow;
+	public int mNewPieceCol;
 	
 	/** whether a piece is changed*/
-	private boolean[][] mIsEffectedPiece;
-	
-	private Vector<String> mMoveList;
+	public boolean[][] mIsEffectedPiece;
+
+	public Vector<String> mMoveList;
 	
 	/** Private constructor */
-	private Reversi() {
+	public Reversi() {
 		init();
 	}
 	
@@ -123,7 +123,7 @@ public class Reversi extends Observable{
 	}
 	
 	/** Initialize the board */
-    private void init() {
+	public void init() {
     	// init board
 		mBoard = new char[sBOARD_SIZE][sBOARD_SIZE];
 		
@@ -199,7 +199,7 @@ public class Reversi extends Observable{
 	}
     
     /** Reset the board */
-	private void resetBoard() {
+	public void resetBoard() {
 		for (int i=0; i < sBOARD_SIZE; ++i)
 			for (int j=0; j < sBOARD_SIZE; ++j)
 				mBoard[i][j] = sINIT_BOARD[i][j];
@@ -228,7 +228,7 @@ public class Reversi extends Observable{
 	}
 	
 	/** Get next move */
-	private void getNextMove() {
+	public void getNextMove() {
 		if (!mIsCompTurn) {
 			char piece = (mIsBlackTurn) ? sBLACK_PIECE : sWHITE_PIECE;
 			if ((findValidMove(mBoard, piece, true)).isEmpty()) {
@@ -277,19 +277,19 @@ public class Reversi extends Observable{
 	}
 	
 	/** add a move to move list */
-	private void addToMoveList(char piece, int row, int col) {
+	public void addToMoveList(char piece, int row, int col) {
 		String str = String.format("%s:\t%s", String.valueOf(piece).toUpperCase(), MoveCoord.encode(row, col));
 		mMoveList.add(str);
 	}
 	
 	/** change turn of playing */
-	private void changeTurn() {
+	public void changeTurn() {
 		mIsBlackTurn = !mIsBlackTurn;
 		mIsCompTurn = !mIsCompTurn;
 	}
 	
 	/** Calculate score */
-	private void calScore() {
+	public void calScore() {
 		mBlackScore = 0;
 		mWhiteScore = 0;
 		for (int i = 0; i < sBOARD_SIZE; ++i)
@@ -448,8 +448,8 @@ public class Reversi extends Observable{
 			getNextMove();
 		}
 	}
-    
-	private void stateChange() {
+
+	public void stateChange() {
 		calScore();
 		setChanged();
 		notifyObservers();

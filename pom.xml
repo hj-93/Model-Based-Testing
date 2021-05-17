@@ -67,6 +67,29 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
     </dependency>
+    <!-- For matchers used in example -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>java-hamcrest</artifactId>
+      <version>2.0.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.pholser</groupId>
+      <artifactId>junit-quickcheck-core</artifactId>
+      <version>0.7</version>
+    </dependency>
+    <dependency>
+    <groupId>com.pholser</groupId>
+    <artifactId>junit-quickcheck-generators</artifactId>
+    <version>0.7</version>
+  </dependency>
+    <!-- https://mvnrepository.com/artifact/com.ning.maven.plugins/maven-duplicate-finder-plugin -->
+    <dependency>
+      <groupId>com.ning.maven.plugins</groupId>
+      <artifactId>maven-duplicate-finder-plugin</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+
   </dependencies>
 
   <build>
