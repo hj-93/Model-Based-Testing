@@ -20,4 +20,20 @@ public class PropertyTest {
             assertEquals(r.mState, r.PLAYING);
         }
     }
+//Hui
+    //OneMovePlayedOnePieceAdded
+    //DuringPLAYINGStateBothPlayersHaveAtLeastOnePoint
+//Magnus
+    //APieceIntersectingAnotherSameColoredPieceInStraightLineConvertsAllPiecesInBetween (wbw => www)
+    //InvalidMoveShouldNotAffectBoard (reversi.isValidMove can be made use of here)
+//John
+    //TotalScoreShouldEqualPiecesOnTheBoard
+    //WhenPieceIsPlacedAtLeastOneEnemyPieceShouldChangeColor
+//Anders
+    //WhenOnePlayerPlaysTheOthersScoreShouldDecrease
+    //GameShouldEndWhenNeitherPlayerHasValidMoves
+
+//Backups
+    //TurnChangesWhenMoveIsPlayed
+    //mIsEffectedPieceCorrelatesToActualBoard
 }

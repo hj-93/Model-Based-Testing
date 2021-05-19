@@ -19,7 +19,8 @@ public class ReversiGenerator extends Generator<Reversi> {
         reversi.mIsCompTurn = sourceOfRandomness.nextBoolean();
         int iterations = sourceOfRandomness.nextInt(40);
 
-        printBoard(reversi);
+        //System.out.println("Initial Board:");
+        //printBoard(reversi);
         System.out.println("Iterations: " + iterations);
 
 
@@ -40,7 +41,7 @@ public class ReversiGenerator extends Generator<Reversi> {
                 reversi.mNewPieceRow = move.getRow();
                 reversi.mNewPieceCol = move.getCol();
             }
-            printBoard(reversi);
+            //printBoard(reversi);
             reversi.mIsBlackTurn = !reversi.mIsBlackTurn;
         }
 
