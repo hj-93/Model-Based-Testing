@@ -46,65 +46,65 @@ import javax.imageio.ImageIO;
 public class Board extends javax.swing.JPanel implements MouseListener {
 
 	/**	 */
-	private static final long serialVersionUID = 2134560527067238989L;
+	public static final long serialVersionUID = 2134560527067238989L;
 
 	/******************************/
 	/* CONSTANT FOR DRAWING BOARD */
 	/******************************/
 	/** size of board */
-	private static final int sBOARD_SIZE = Reversi.sBOARD_SIZE;
+	public static final int sBOARD_SIZE = Reversi.sBOARD_SIZE;
 
 	/** border offset */
-	private static final int sBORDER_OFFSET = 30;
+	public static final int sBORDER_OFFSET = 30;
 
 	/** board offset */
-	private static final int sBOARD_OFFSET = 20;
+	public static final int sBOARD_OFFSET = 20;
 
 	/** border and board offset */
-	private static final int sBORDER_BOARD_OFFSET = sBORDER_OFFSET + sBOARD_OFFSET;
+	public static final int sBORDER_BOARD_OFFSET = sBORDER_OFFSET + sBOARD_OFFSET;
 
 	/** size of a square. */
-	private static final int sSQUARE_WIDTH = 45;
+	public static final int sSQUARE_WIDTH = 45;
 
 	/** size of the board in pixels */
-	private static final int sBOARD_SIZE_PIXEL = (sBOARD_OFFSET + sBORDER_OFFSET) * 2 +
+	public static final int sBOARD_SIZE_PIXEL = (sBOARD_OFFSET + sBORDER_OFFSET) * 2 +
 													sSQUARE_WIDTH * sBOARD_SIZE;
 
 	/** radius of a piece */
-	private static final int sPIECE_WIDTH = 35;
+	public static final int sPIECE_WIDTH = 35;
 
 	/** offset piece inside a square */
-	private static final int sSQUARE_OFFSET = (sSQUARE_WIDTH - sPIECE_WIDTH) >> 1;
+	public static final int sSQUARE_OFFSET = (sSQUARE_WIDTH - sPIECE_WIDTH) >> 1;
 
 	/** width of the border */
-	private static final int sBORDER_WIDTH = 3;
+	public static final int sBORDER_WIDTH = 3;
 
 	/** width of the division between square */
-	private static final int sDIVIDE_WIDTH = 1;
+	public static final int sDIVIDE_WIDTH = 1;
 
 	/** board color */
-	private static final Color sBOARD_COLOR = new Color(176, 140, 0, 255);
+	public static final Color sBOARD_COLOR = new Color(176, 140, 0, 255);
 
 	/** squares' divide color */
-	private static final Color sDIVIDE_COLOR = Color.BLACK;
+	public static final Color sDIVIDE_COLOR = Color.BLACK;
 
 	/** color for susggest black piece */
-	private static final Color sSUGGEST_BLACK_COLOR = new Color(0, 0, 0, 50);
+	public static final Color sSUGGEST_BLACK_COLOR = new Color(0, 0, 0, 50);
 
 	/** color for susggest white piece */
-	private static final Color sSUGGEST_WHITE_COLOR = new Color(255, 255, 255, 80);
+	public static final Color sSUGGEST_WHITE_COLOR = new Color(255, 255, 255, 80);
 
 	/** color for board's texts */
-	private static final Color sBOARD_TEXT_COLOR = Color.WHITE;
+	public static final Color sBOARD_TEXT_COLOR = Color.WHITE;
 
 	/** font for board's texts */
-	private static final Font sBOARD_FONT = new Font("SansSerif", Font.BOLD, 16);
+	public static final Font sBOARD_FONT = new Font("SansSerif", Font.BOLD, 16);
 
 	/** board column texts */
-	private static final String[] sBOARD_COL_TEXT = {"A", "B", "C", "D", "E", "F", "G", "H"};
+	public static final String[] sBOARD_COL_TEXT = {"A", "B", "C", "D", "E", "F", "G", "H"};
 
 	/** board row texts */
-	private static final String[] sBOARD_ROW_TEXT = {"1", "2", "3", "4", "5", "6", "7", "8"};
+	public static final String[] sBOARD_ROW_TEXT = {"1", "2", "3", "4", "5", "6", "7", "8"};
 
 	/***********************************/
 	/* END CONSTANTS FOR DRAWING BOARD */
@@ -132,7 +132,7 @@ public class Board extends javax.swing.JPanel implements MouseListener {
         init();
     }
 
-    private void init() {
+	public void init() {
     	// load image for pieces
 		try {
 			mBlackPieceImg = ImageIO.read(this.getClass().getResourceAsStream("/img/blackpiece.png"));
@@ -223,27 +223,27 @@ public class Board extends javax.swing.JPanel implements MouseListener {
 			}
 	}
 
-	private void drawNewPiece(Graphics g, int row, int col) {
+	public void drawNewPiece(Graphics g, int row, int col) {
 		g.setColor(Color.GREEN);
 		g.fillRect((col * sSQUARE_WIDTH) + sBORDER_BOARD_OFFSET + sDIVIDE_WIDTH,
 				(row * sSQUARE_WIDTH)	+ sBORDER_BOARD_OFFSET + sDIVIDE_WIDTH,
 				sSQUARE_WIDTH - sDIVIDE_WIDTH, sSQUARE_WIDTH - sDIVIDE_WIDTH);
 	}
 
-	private void drawEffectedPiece(Graphics g, int row, int col) {
+	public void drawEffectedPiece(Graphics g, int row, int col) {
 		g.setColor(new Color(0, 255, 0, 80));
 		g.fillRect((col * sSQUARE_WIDTH) + sBORDER_BOARD_OFFSET + sDIVIDE_WIDTH,
 				(row * sSQUARE_WIDTH)	+ sBORDER_BOARD_OFFSET + sDIVIDE_WIDTH,
 				sSQUARE_WIDTH - sDIVIDE_WIDTH, sSQUARE_WIDTH - sDIVIDE_WIDTH);
 	}
 
-	private void drawSuggestedPiece(Graphics g, int row, int col) {
+	public void drawSuggestedPiece(Graphics g, int row, int col) {
 		g.fillOval(	(col * sSQUARE_WIDTH) + sSQUARE_OFFSET + sBORDER_BOARD_OFFSET,
 				(row * sSQUARE_WIDTH)	+ sSQUARE_OFFSET + sBORDER_BOARD_OFFSET,
 				sPIECE_WIDTH, sPIECE_WIDTH);
 	}
 
-	private void drawPiece(Graphics g, BufferedImage img, int row, int col) {
+	public void drawPiece(Graphics g, BufferedImage img, int row, int col) {
 		g.drawImage(img,
 				(col * sSQUARE_WIDTH) + sSQUARE_OFFSET + sBORDER_BOARD_OFFSET,
 				(row * sSQUARE_WIDTH) + sSQUARE_OFFSET + sBORDER_BOARD_OFFSET, null);
