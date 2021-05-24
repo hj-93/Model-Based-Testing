@@ -63,6 +63,26 @@ public class PropertyTest {
     //WhenPieceIsPlacedAtLeastOneEnemyPieceShouldChangeColor
 //Anders
     //WhenOnePlayerPlaysTheOthersScoreShouldDecrease
+    @Property public void WhenOnePlayerPlaysTheOthersScoreShouldDecrease(@From(ReversiGenerator.class) Reversi r) {
+        char piece = (r.mIsBlackTurn) ? r.sBLACK_PIECE : r.sWHITE_PIECE;
+        r.calScore();
+        int blackScoreOld = r.getBlackScore();
+        int whiteScoreOld = r.getWhiteScore();
+        Agent.MoveCoord move = r.mAIAgent.findMove(r.getBoard(), piece);
+        if (move != null) {
+            Reversi.effectMove(r.mBoard, piece, move.getRow(), move.getCol());
+            r.calScore();
+            int blackScore = r.getBlackScore();
+            int whiteScore = r.getWhiteScore();
+
+            if(r.mIsBlackTurn) {
+                assertTrue(blackScore > blackScoreOld && whiteScore < whiteScoreOld);
+            }
+            else {
+                assertTrue(blackScore < blackScoreOld && whiteScore > whiteScoreOld);
+            }
+        }
+    }
     //GameShouldEndWhenNeitherPlayerHasValidMoves
 
 //Backups
