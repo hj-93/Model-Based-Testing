@@ -27,6 +27,7 @@ public class PropertyTest {
 
     @Property public void PlayerMoveAvailableGameNotEnded(@From(ReversiGenerator.class) Reversi r) {
         char piece = (r.mIsBlackTurn) ? Reversi.sBLACK_PIECE : Reversi.sWHITE_PIECE;
+        r.getNextMove();
         boolean playerMoveNotAvailable = (Reversi.findValidMove(r.mBoard, piece, true)).isEmpty();
         if (!playerMoveNotAvailable) {
             assertEquals(r.mState, Reversi.PLAYING);
