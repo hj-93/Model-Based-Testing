@@ -7,6 +7,8 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @RunWith(JUnitQuickcheck.class)
 public class PropertyTest {
@@ -24,10 +26,10 @@ public class PropertyTest {
     }
 
     @Property public void PlayerMoveAvailableGameNotEnded(@From(ReversiGenerator.class) Reversi r) {
-        char piece = (r.mIsBlackTurn) ? r.sBLACK_PIECE : r.sWHITE_PIECE;
-        boolean playerMoveNotAvailable = (r.findValidMove(r.mBoard, piece, true)).isEmpty();
+        char piece = (r.mIsBlackTurn) ? Reversi.sBLACK_PIECE : Reversi.sWHITE_PIECE;
+        boolean playerMoveNotAvailable = (Reversi.findValidMove(r.mBoard, piece, true)).isEmpty();
         if (!playerMoveNotAvailable) {
-            assertEquals(r.mState, r.PLAYING);
+            assertEquals(r.mState, Reversi.PLAYING);
         }
     }
 
@@ -52,8 +54,43 @@ public class PropertyTest {
     }
 
 //Magnus
-    //APieceIntersectingAnotherSameColoredPieceInStraightLineConvertsAllPiecesInBetween (wbw => www)
+
+    //TurnChangesWhenMoveIsPlayed
+    @Property public void TurnChangesWhenMoveIsPlayed(@From(ReversiGenerator.class) Reversi r) {
+        char piece = (r.mIsBlackTurn) ? Reversi.sBLACK_PIECE : Reversi.sWHITE_PIECE;
+        ArrayList<Agent.MoveCoord> moves = Reversi.findValidMove(r.mBoard, piece, true);
+        char suggestPiece = (r.mIsBlackTurn) ? r.sSUGGEST_BLACK_PIECE : r.sSUGGEST_WHITE_PIECE;
+        if (!moves.isEmpty()) {
+            final boolean currentTurn = r.mIsBlackTurn;
+            int row = moves.get(0).getRow();
+            int col = moves.get(0).getCol();
+
+            //code taken from r.movePiece(), can't call actual method because it launches another game round where the AI makes a move is some cases
+            Reversi.effectMove(r.mBoard, piece, row, col);
+            r.mNewPieceRow = row;
+            r.mNewPieceCol = col;
+
+            // add to move list
+            r.addToMoveList(piece, row, col);
+            // notify the observer
+            r.stateChange();
+
+            // change turn
+            r.changeTurn();
+
+            assertNotEquals(currentTurn, r.mIsBlackTurn);
+        }
+    }
+
     //InvalidMoveShouldNotAffectBoard (reversi.isValidMove can be made use of here)
+    @Property public void InvalidMoveShouldNotAffectBoard(@From(ReversiGenerator.class) Reversi r, @From(RandomMoveGenerator.class) Agent.MoveCoord move) {
+        final char[][] previousBoard = r.mBoard;
+        char piece = (r.mIsBlackTurn) ? Reversi.sBLACK_PIECE : Reversi.sWHITE_PIECE;
+        if (!Reversi.isValidMove(r.mBoard, piece, move.getRow(), move.getCol())) {
+            r.movePiece(move.getRow(), move.getCol());
+            assertArrayEquals(r.mBoard, previousBoard);
+        }
+    }
 //John
     //TotalScoreShouldEqualPiecesOnTheBoard
     @Property
