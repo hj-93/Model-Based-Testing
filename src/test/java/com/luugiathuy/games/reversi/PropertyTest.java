@@ -82,14 +82,33 @@ public class PropertyTest {
             assertNotEquals(currentTurn, r.mIsBlackTurn);
         }
     }
+    private char[][] deepCopy(char[][] original) {
+        if (original == null) {
+            return null;
+        }
 
-    //InvalidMoveShouldNotAffectBoard (reversi.isValidMove can be made use of here)
+        final char[][] result = new char[original.length][];
+        for (int i = 0; i < original.length; i++) {
+            result[i] = Arrays.copyOf(original[i], original[i].length);
+            // For Java versions prior to Java 6 use the next:
+            // System.arraycopy(original[i], 0, result[i], 0, original[i].length);
+        }
+        return result;
+    }
+
+    //InvalidMoveShouldNotAffectBoard
     @Property public void InvalidMoveShouldNotAffectBoard(@From(ReversiGenerator.class) Reversi r, @From(RandomMoveGenerator.class) Agent.MoveCoord move) {
-        final char[][] previousBoard = r.mBoard;
+        char[][] previousBoard = deepCopy(r.mBoard);
         char piece = (r.mIsBlackTurn) ? Reversi.sBLACK_PIECE : Reversi.sWHITE_PIECE;
         if (!Reversi.isValidMove(r.mBoard, piece, move.getRow(), move.getCol())) {
             r.movePiece(move.getRow(), move.getCol());
-            assertArrayEquals(r.mBoard, previousBoard);
+            assertArrayEquals(previousBoard, r.getBoard());
+        }
+    }
+
+    private void printBoard(char[][] a) {
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(String.valueOf(a[i]));
         }
     }
 //John
@@ -100,12 +119,6 @@ public class PropertyTest {
         assertEquals(reversi.getWhiteScore() + reversi.getBlackScore(), numberOfPieces(reversi.getBoard()));
     }
 
-    @Property
-    public void piecesIncreaseByOneAfterMove(@From(ReversiGenerator.class) Reversi reversi) {
-        int currentPieces = numberOfPieces(reversi.getBoard());
-        makeMove(reversi);
-        assertEquals(currentPieces + 1, numberOfPieces(reversi.getBoard()));
-    }
 
     //WhenPieceIsPlacedAtLeastOneEnemyPieceShouldChangeColor
     @Property
@@ -205,17 +218,4 @@ public class PropertyTest {
     //GameShouldEndWhenNeitherPlayerHasValidMoves
 
 //Backups
-    //TurnChangesWhenMoveIsPlayed
-    @Property
-    public void turnChangesAfterMove(@From(ReversiGenerator.class) Reversi reversi) {
-        boolean currentBlackTurn = reversi.mIsBlackTurn;
-        makeMove(reversi);
-        assertNotEquals(currentBlackTurn, reversi.mIsBlackTurn);
-    }
-
-    //mIsEffectedPieceCorrelatesToActualBoard
-    @Property
-    public void effectedPiecesCorrelatesToBoard(@From(ReversiGenerator.class) Reversi reversi) {
-        assertTrue(effectedPiecesToBoard(reversi));
-    }
 }
